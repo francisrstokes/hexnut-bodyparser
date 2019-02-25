@@ -1,6 +1,6 @@
 {
   "name": "hexnut-bodyparser",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A body parser module for the hexnut framework",
   "main": "index.js",
   "scripts": {
