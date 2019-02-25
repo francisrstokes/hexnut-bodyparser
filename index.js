@@ -1,8 +1,18 @@
 module.exports = {
-  json: () => async (ctx, next) => {
-    if (ctx.type === 'message' && ctx.message) {
-      ctx.message = JSON.parse(ctx.message.trim());
+  json: (opts = {}) => {
+    const {
+      strictParsing = false
+    } = opts;
+
+    return async (ctx, next) => {
+      if (ctx.type === 'message' && ctx.message) {
+        try {
+          ctx.message = JSON.parse(ctx.message.trim());
+        } catch (ex) {
+          if (strictParsing) throw ex;
+        }
+      }
+      return await next();
     }
-    return await next();
   }
 };
